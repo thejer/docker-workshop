@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Lightweight wrapper to run the official `uv` container when `uv` isn't installed locally.
+# Usage: ./uv <args...>
+
+set -euo pipefail
+
+# Run the ghcr container, mounting current directory as /work and forwarding args
+docker run --rm -v "${PWD}":/work -w /work ghcr.io/astral-sh/uv:latest uv "$@"
